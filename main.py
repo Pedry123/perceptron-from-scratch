@@ -45,7 +45,7 @@ def inference(x, w):
     y_pred = np.sign(u).ravel()
 
     c1 = list(filter(lambda x: x[1] < 0, enumerate(y_pred)))
-    c2 = list(filter(lambda x: x[1] > 0, enumerate(y_pred)))
+    c2 = list(filter(lambda x: x[1] >= 0, enumerate(y_pred)))
     print('='*50, 'Inferência', '='*50)
     print("Amostras pertencentes à classe C1:", *list(map(lambda x: x[0]+1, c1)))
     print(f"Amostras pertencentes à classe C2:", *list(map(lambda x: x[0]+1, c2)))
