@@ -6,7 +6,7 @@ args = {
     'lr': 0.01
 }
 
-def get_normalization_params(data):
+def _get_normalization_params(data):
     # para pegar os parâmetros de normalização, pois é necessário normalizar os dados de teste com os mesmos parâmetros dos dados de treino
     return {
         'min': data.min(),
@@ -20,7 +20,7 @@ def pre_processing(df, in_features: list, desired_output='d', train=True, norm_p
     inputs = df[in_features].to_numpy()
     # se tivermos um conjunto de treino, calculamos os parâmetros de normalização, senão, usamos os parâmetros passados
     if train:
-        norm_params = get_normalization_params(inputs) if norm_params is None else norm_params
+        norm_params = _get_normalization_params(inputs) if norm_params is None else norm_params
         inputs = np.apply_along_axis(_normalize, 0, inputs, norm_params)
         desired_output = df[desired_output].to_numpy()
         desired_output = desired_output.reshape(desired_output.shape[0], 1).transpose()
